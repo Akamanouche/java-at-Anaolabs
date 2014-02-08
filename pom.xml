@@ -1,0 +1,12 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.anaolabs.java</groupId>
+  <artifactId>java-at-Anaolabs</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Java stuff at Anaolabs</name>
+  <description>Java stuff (scriptlets, tests) @Anaolabs</description>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>spring-anaolabs</module>
+  </modules>
+</project>
