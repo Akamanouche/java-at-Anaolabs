@@ -1,0 +1,11 @@
+###################
+## Eclipse projects
+###################
+
+.metadata
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+
