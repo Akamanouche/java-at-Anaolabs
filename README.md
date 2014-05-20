@@ -3,4 +3,4 @@ java-at-Anaolabs
 
 Repository for Java stuff at Anaolabs
 
-[![Build Status](http://http://qvidkar4:9999/view/TOOL/job/TOOL-it-report-build/)](http://http://qvidkar4:9999/view/TOOL/job/TOOL-it-report-build/)
+[![Build Status](http://qvidkar4:9999/view/TOOL/job/TOOL-it-report-build/)](http://qvidkar4:9999/view/TOOL/job/TOOL-it-report-build/)
