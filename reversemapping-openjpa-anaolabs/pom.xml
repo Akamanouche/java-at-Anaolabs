@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.anaolabs.java</groupId>
+		<artifactId>java-at-Anaolabs</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<groupId>org.anaolabs.java.jpa</groupId>
+	<artifactId>reversemapping-openjpa-anaolabs</artifactId>
+	<name>reversemapping-openjpa-anaolabs</name>
+	<description>reverse engineering DB-to-model project</description>
+
+	<dependencies>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2</version>
+				<configuration>
+					<mainClass>org.apache.openjpa.jdbc.meta.ReverseMappingTool</mainClass>
+					<arguments>
+					<!-- -->
+				      <argument>-directory</argument><argument>src/main/java</argument>
+				      <argument>-accessType</argument><argument>fields</argument>
+				      <argument>-useGenericCollections</argument><argument>true</argument>
+				      <argument>-package</argument><argument>org.anaolabs.easytrust.model.etfnd</argument>
+				      <argument>-innerIdentityClasses</argument><argument>true</argument>
+				      <argument>-useBuiltinIdentityClass</argument><argument>true</argument>
+				      <argument>-primaryKeyOnJoin</argument><argument>true</argument>
+				      <argument>-annotations</argument><argument>true</argument>
+				      <argument>-p</argument><argument>src/main/resources/META-INF/reverse-persistence.xml</argument>
+				      <!-- Les wildcards ne fonctionnent pas vraiment... -->
+				      <argument>-schemas</argument><argument>ET_FND.FND_EXP_DB</argument>
+				      <!-- argument>-schemas</argument><argument>ET_FND.*</argument -->
+				    </arguments>
+					<includePluginDependencies>true</includePluginDependencies>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>javax.validation</groupId>
+						<artifactId>validation-api</artifactId>
+						<version>1.0.CR3</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.openjpa</groupId>
+						<artifactId>openjpa-all</artifactId>
+						<version>2.3.0</version>
+					</dependency>
+					<dependency>
+						<groupId>com.oracle</groupId>
+						<artifactId>ojdbc6</artifactId>
+						<version>11.2.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>

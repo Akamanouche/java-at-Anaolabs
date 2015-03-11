@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_0.xsd" version="2.0">
+    <package>
+        org.anaolabs.easytrust.model.etfnd
+    </package>
+    <access>
+        PROPERTY
+    </access>
+    <entity class="FndExpDb">
+        <table schema="ET_FND" name="FND_EXP_DB"/>
+        <attributes>
+            <id name="expId">
+                <column name="EXP_ID" length="22"/>
+            </id>
+            <basic name="expIncludePk">
+                <column name="EXP_INCLUDE_PK" length="1"/>
+            </basic>
+            <basic name="expOrder">
+                <column name="EXP_ORDER" length="3"/>
+            </basic>
+            <basic name="expOwner">
+                <column name="EXP_OWNER" nullable="false" length="30"/>
+            </basic>
+            <basic name="expTableName">
+                <column name="EXP_TABLE_NAME" nullable="false" length="30"/>
+            </basic>
+            <basic name="expWhereClause">
+                <column name="EXP_WHERE_CLAUSE" length="4000"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>

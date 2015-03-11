@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<persistence-unit name="persistenceUnit">
+		<properties>
+			<!--
+			<property name="openjpa.ConnectionUserName" value="${db.username}" />
+			<property name="openjpa.ConnectionPassword" value="${db.password}" />
+			<property name="openjpa.ConnectionURL" value="${db.url}" />
+			<property name="openjpa.ConnectionDriverName" value="${db.driver.class}" />
+			-->
+			<!--property name="openjpa.ConnectionUserName" value="et_lm" / -->
+			<property name="openjpa.ConnectionUserName" value="et_fnd" />
+			<property name="openjpa.ConnectionPassword" value="Welcome1" />
+			<property name="openjpa.ConnectionURL" value="jdbc:oracle:thin:@easytrustdev2:1521:ETRUST" />
+			<property name="openjpa.ConnectionDriverName" value="oracle.jdbc.driver.OracleDriver" />
+			<!-- property name="openjpa.Log" value="SQL=TRACE" / -->
+			<property name="openjpa.Log" value="File=./org.apache.openjpa.log, DefaultLevel=TRACE, Runtime=TRACE, Tool=TRACE"/>
+		</properties>
+	</persistence-unit>
+
+</persistence>

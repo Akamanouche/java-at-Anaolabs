@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="reversemapping-jpatools-anaolabs">
+		<class>model.TLicence</class>
+		<class>model.TOrg</class>
+		<class>model.TOrgLicence</class>
+		<class>model.TOrgServer</class>
+		<class>model.TProduct</class>
+		<class>model.TProductInst</class>
+		<class>model.TProductInstLicence</class>
+		<class>model.TProductInstOpt</class>
+		<class>model.TServer</class>
+		<class>model.TServerDet</class>
+		<class>model.TTranslation</class>
+		<class>model.VLicence</class>
+		<class>model.VOrg</class>
+		<class>model.VOrgLicence</class>
+		<class>model.VOrgServer</class>
+		<class>model.VProduct</class>
+		<class>model.VProductInst</class>
+		<class>model.VProductInstLicence</class>
+		<class>model.VProductInstOpt</class>
+		<class>model.VServer</class>
+		<class>model.VServerDet</class>
+		<class>model.VTranslation</class>
+	</persistence-unit>
+</persistence>
