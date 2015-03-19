@@ -25,19 +25,33 @@
 					<mainClass>org.apache.openjpa.jdbc.meta.ReverseMappingTool</mainClass>
 					<arguments>
 					<!-- -->
-				      <argument>-directory</argument><argument>src/main/java</argument>
-				      <argument>-accessType</argument><argument>fields</argument>
-				      <argument>-useGenericCollections</argument><argument>true</argument>
-				      <argument>-package</argument><argument>org.anaolabs.easytrust.model.etfnd</argument>
-				      <argument>-innerIdentityClasses</argument><argument>true</argument>
-				      <argument>-useBuiltinIdentityClass</argument><argument>true</argument>
-				      <argument>-primaryKeyOnJoin</argument><argument>true</argument>
-				      <argument>-annotations</argument><argument>true</argument>
-				      <argument>-p</argument><argument>src/main/resources/META-INF/reverse-persistence.xml</argument>
+				      <argument>-directory</argument>
+				      <argument>src/main/java</argument>
+				      <argument>-accessType</argument>
+				      <argument>fields</argument>
+				      <argument>-useGenericCollections</argument>
+				      <argument>false</argument>
+				      <argument>-package</argument>
+				      <argument>org.anaolabs.easytrust.model.etfnd</argument>
+				      <argument>-innerIdentityClasses</argument>
+				      <argument>true</argument>
+				      <argument>-useBuiltinIdentityClass</argument>
+				      <argument>true</argument>
+				      <argument>-primaryKeyOnJoin</argument>
+				      <argument>false</argument>
+				      <argument>-annotations</argument>
+				      <argument>false</argument>
+				      <argument>-p</argument>
+				      <argument>src/main/resources/META-INF/reverse-persistence.xml</argument>
 				      <!-- Les wildcards ne fonctionnent pas vraiment... -->
-				      <argument>-schemas</argument><argument>ET_FND.FND_EXP_DB</argument>
+				      <argument>-schemas</argument>
+				      <argument>ET_FND.FND_EXP_DB</argument>
 				      <!-- argument>-schemas</argument><argument>ET_FND.*</argument -->
+				      <!-- Do not generate orm.xml file -->
+				      <argument>-metadata</argument>
+				      <argument>none</argument>
 				    </arguments>
+
 					<includePluginDependencies>true</includePluginDependencies>
 				</configuration>
 				<dependencies>

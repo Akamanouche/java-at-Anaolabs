@@ -41,4 +41,7 @@ target/
 *.war
 *.ear
 
+# Application files
+*.java~
+
 
