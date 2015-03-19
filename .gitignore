@@ -1,12 +1,44 @@
-###################
-## Eclipse projects
-###################
+###########################
+# Eclipse specifics 
+###########################
 
+# misc files
+#.project        KEPT !
 .metadata
-bin/
-tmp/
-target/
-.settings/
 *.tmp
 *.bak
+*.swp
+*.jws
+*~.nib
+local.properties
+#.classpath      KEPT !
+.checkstyle
+.loadpath
+*.log
+
+# misc directories
+bin/
+tmp/
+.settings/
+build/
+classes/
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PDT-specific
+.buildpath 
+
+# Maven
+log/
+target/
+
+# Packaged files
+*.jar
+*.war
+*.ear
+
 
