@@ -1,15 +1,11 @@
 
-Un peu d'infos sur le projet
+Un peu d'infos sur ce sous-module "openjpa"
 ===
 
 ### Contenu
 * Liens
 * Des Profiles Maven pour plusieurs exec-maven-plugin
-* Modules
-* Spring
-* Spring Batch
-* l'Infrastructure Spring Batch
-* le modèle de données (JPA)
+* Commandes Maven à lancer
 
 
 ### Liens
@@ -31,3 +27,9 @@ Pour les distinguer, j'ai choisi de me baser sur la définition de plusieurs Pro
 Profiles Maven :
 - reverse-schema
 - reverse-entities
+
+### Commandes Maven à lancer
+
+Les commandes Maven à lancer sont donc :
+	$ mvn -X -Preverse-schema exec:java 
+	$ mvn -X -Preverse-entities exec:java

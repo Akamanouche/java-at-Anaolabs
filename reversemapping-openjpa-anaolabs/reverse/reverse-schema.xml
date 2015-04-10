@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemas>
+    <schema name="ET_DWH">
+        <sequence name="BATCH_JOB_EXECUTION_SEQ"/>
+        <sequence name="BATCH_JOB_SEQ"/>
+        <sequence name="BATCH_STEP_EXECUTION_SEQ"/>
+        <sequence name="SEQ_CALENDAR"/>
+        <sequence name="SEQ_PRODUCT_OPTION_NAME"/>
+    </schema>
+</schemas>
