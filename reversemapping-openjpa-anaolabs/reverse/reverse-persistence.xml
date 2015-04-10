@@ -13,7 +13,7 @@
 			<property name="openjpa.ConnectionDriverName" value="${db.driver.class}" />
 			-->
 			<!--property name="openjpa.ConnectionUserName" value="et_lm" / -->
-			<property name="openjpa.ConnectionUserName" value="et_fnd" />
+			<property name="openjpa.ConnectionUserName" value="ET_DWH" />
 			<property name="openjpa.ConnectionPassword" value="Welcome1" />
 			<property name="openjpa.ConnectionURL" value="jdbc:oracle:thin:@easytrustdev2:1521:ETRUST" />
 			<property name="openjpa.ConnectionDriverName" value="oracle.jdbc.driver.OracleDriver" />

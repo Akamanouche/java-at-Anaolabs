@@ -12,66 +12,141 @@
 	<name>reversemapping-openjpa-anaolabs</name>
 	<description>reverse engineering DB-to-model project</description>
 
-	<dependencies>
-	</dependencies>
+	<properties>
+		<!-- OpenJPA Reverse mapping -->
+		<persistence.location>reverse/reverse-persistence.xml</persistence.location>
+		<reverse.schema>reverse/reverse-schema.xml</reverse.schema>
+	</properties>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2</version>
-				<configuration>
-					<mainClass>org.apache.openjpa.jdbc.meta.ReverseMappingTool</mainClass>
-					<arguments>
-					<!-- -->
-				      <argument>-directory</argument>
-				      <argument>src/main/java</argument>
-				      <argument>-accessType</argument>
-				      <argument>fields</argument>
-				      <argument>-useGenericCollections</argument>
-				      <argument>false</argument>
-				      <argument>-package</argument>
-				      <argument>org.anaolabs.easytrust.model.etfnd</argument>
-				      <argument>-innerIdentityClasses</argument>
-				      <argument>true</argument>
-				      <argument>-useBuiltinIdentityClass</argument>
-				      <argument>true</argument>
-				      <argument>-primaryKeyOnJoin</argument>
-				      <argument>false</argument>
-				      <argument>-annotations</argument>
-				      <argument>false</argument>
-				      <argument>-p</argument>
-				      <argument>src/main/resources/META-INF/reverse-persistence.xml</argument>
-				      <!-- Les wildcards ne fonctionnent pas vraiment... -->
-				      <argument>-schemas</argument>
-				      <argument>ET_FND.FND_EXP_DB</argument>
-				      <!-- argument>-schemas</argument><argument>ET_FND.*</argument -->
-				      <!-- Do not generate orm.xml file -->
-				      <argument>-metadata</argument>
-				      <argument>none</argument>
-				    </arguments>
+	
+	<!--
+		************************************************
+		 (n) Profiles to execute (n) exec-maven-plugin
+		 (see: http://stackoverflow.com/questions/8252107/is-it-possible-to-execute-two-different-maven-exec-maven-plugin-in-a-single-pom)
+		************************************************
+	-->
+	<profiles> 
+		<!-- A profile for reversing schema of database -->
+		<profile>
+		    <id>reverse-schema</id>
+		    <build>
+			    <plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2</version>
+						<configuration>
+							<!-- OpenJPA Tool : for reverse mapping DB/Tables to Java entities
+									(see: 
+									1) http://openjpa.apache.org/builds/1.2.3/apache-openjpa/docs/ref_guide_schema_schematool.html
+									2) https://www.esup-portail.org/wiki/display/PROJCOMMONS/3.3.7+Reverse-engineering
+									)
+							-->
+							<mainClass>org.apache.openjpa.jdbc.schema.SchemaTool</mainClass>
+							<arguments>
+								<argument>-action</argument>
+								<argument>reflect</argument>
+								<argument>-file</argument>
+								<argument>${reverse.schema}</argument>
+								<argument>-schemas</argument>
+								<argument>ET_DWH</argument>
+								<argument>-p</argument>
+								<argument>${persistence.location}</argument>
+							</arguments>
+					 		<includePluginDependencies>true</includePluginDependencies>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>javax.validation</groupId>
+								<artifactId>validation-api</artifactId>
+								<version>1.0.CR3</version>
+							</dependency>
+							<dependency>
+								<groupId>org.apache.openjpa</groupId>
+								<artifactId>openjpa-all</artifactId>
+								<version>2.3.0</version>
+							</dependency>
+							<dependency>
+								<groupId>com.oracle</groupId>
+								<artifactId>ojdbc6</artifactId>
+								<version>11.2.0</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+			    </plugins>
+		   	</build>
+		</profile>
+		
 
-					<includePluginDependencies>true</includePluginDependencies>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>javax.validation</groupId>
-						<artifactId>validation-api</artifactId>
-						<version>1.0.CR3</version>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.openjpa</groupId>
-						<artifactId>openjpa-all</artifactId>
-						<version>2.3.0</version>
-					</dependency>
-					<dependency>
-						<groupId>com.oracle</groupId>
-						<artifactId>ojdbc6</artifactId>
-						<version>11.2.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-		</plugins>
-	</build>
+		<!-- A profile for reversing entities based on schema (or not !) -->
+		<profile>
+		    <id>reverse-entities</id>
+		    <build>
+			    <plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2</version>
+						<configuration>
+							<!-- OpenJPA Tool : for reverse mapping DB/Tables to Java entities
+									(see: 
+									1) http://openjpa.apache.org/builds/1.2.3/apache-openjpa/docs/ref_guide_schema_schematool.html
+									2) https://www.esup-portail.org/wiki/display/PROJCOMMONS/3.3.7+Reverse-engineering
+									)
+							-->
+							<mainClass>org.apache.openjpa.jdbc.meta.ReverseMappingTool</mainClass>
+							<arguments>
+						      <argument>-directory</argument>
+						      <argument>src/main/java</argument>
+						      <argument>-accessType</argument>
+						      <argument>fields</argument>
+						      <argument>-useGenericCollections</argument>
+						      <argument>false</argument>
+						      <argument>-package</argument>
+						      <argument>org.anaolabs.easytrust.model.etdwh</argument>
+						      <argument>-innerIdentityClasses</argument>
+						      <argument>true</argument>
+						      <argument>-useBuiltinIdentityClass</argument>
+						      <argument>true</argument>
+						      <argument>-primaryKeyOnJoin</argument>
+						      <argument>false</argument>
+						      <argument>-annotations</argument>
+						      <argument>false</argument>
+						      <argument>-p</argument>
+						      <argument>${persistence.location}</argument>
+						      <!-- Les wildcards ne fonctionnent pas vraiment... -->
+						      <argument>-schemas</argument>
+						      <argument>ET_DWH.CLIENT</argument>
+						      <!-- argument>-schemas</argument><argument>ET_FND.*</argument -->
+						      <!-- Do not generate orm.xml file -->
+						      <argument>-metadata</argument>
+						      <argument>none</argument>
+						    </arguments>
+		
+							<includePluginDependencies>true</includePluginDependencies>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>javax.validation</groupId>
+								<artifactId>validation-api</artifactId>
+								<version>1.0.CR3</version>
+							</dependency>
+							<dependency>
+								<groupId>org.apache.openjpa</groupId>
+								<artifactId>openjpa-all</artifactId>
+								<version>2.3.0</version>
+							</dependency>
+							<dependency>
+								<groupId>com.oracle</groupId>
+								<artifactId>ojdbc6</artifactId>
+								<version>11.2.0</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+			    </plugins>
+		   	</build>
+		</profile>
+		
+	</profiles>
+	
 </project>

@@ -88,8 +88,8 @@ public class TLicence implements Serializable {
 	private String productShortName;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="SNAPHOT_ID")
-	private Date snaphotId;
+	@Column(name="SNAPSHOT_ID")
+	private Date snapshotId;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="SUPPORT_END")
@@ -282,12 +282,12 @@ public class TLicence implements Serializable {
 		this.productShortName = productShortName;
 	}
 
-	public Date getSnaphotId() {
-		return this.snaphotId;
+	public Date getSnapshotId() {
+		return this.snapshotId;
 	}
 
-	public void setSnaphotId(Date snaphotId) {
-		this.snaphotId = snaphotId;
+	public void setSnapshotId(Date snapshotId) {
+		this.snapshotId = snapshotId;
 	}
 
 	public Date getSupportEnd() {

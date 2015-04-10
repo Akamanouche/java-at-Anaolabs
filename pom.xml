@@ -8,8 +8,11 @@
   <packaging>pom</packaging>
   <modules>
   	<module>spring-anaolabs</module>
+  	
+  	<!--
   	<module>reversemapping-openjpa-anaolabs</module>
   	<module>reversemapping-jpatools-anaolabs</module>
+  	-->
   </modules>
   <dependencyManagement>
   	<dependencies>

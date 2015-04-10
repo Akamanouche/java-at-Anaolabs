@@ -47,8 +47,8 @@ public class TProductInstOpt implements Serializable {
 	private BigDecimal serId;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="SNAPHOT_ID")
-	private Date snaphotId;
+	@Column(name="SNAPSHOT_ID")
+	private Date snapshotId;
 
 	public TProductInstOpt() {
 	}
@@ -133,12 +133,12 @@ public class TProductInstOpt implements Serializable {
 		this.serId = serId;
 	}
 
-	public Date getSnaphotId() {
-		return this.snaphotId;
+	public Date getSnapshotId() {
+		return this.snapshotId;
 	}
 
-	public void setSnaphotId(Date snaphotId) {
-		this.snaphotId = snaphotId;
+	public void setSnapshotId(Date snapshotId) {
+		this.snapshotId = snapshotId;
 	}
 
 }

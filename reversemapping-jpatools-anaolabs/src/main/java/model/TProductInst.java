@@ -68,9 +68,6 @@ public class TProductInst implements Serializable {
 	@Column(name="PROI_NAME")
 	private String proiName;
 
-	@Column(name="PROI_TODELETE")
-	private BigDecimal proiTodelete;
-
 	@Column(name="PROI_VERSION")
 	private String proiVersion;
 
@@ -78,8 +75,8 @@ public class TProductInst implements Serializable {
 	private BigDecimal serId;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="SNAPHOT_ID")
-	private Date snaphotId;
+	@Column(name="SNAPSHOT_ID")
+	private Date snapshotId;
 
 	public TProductInst() {
 	}
@@ -220,14 +217,6 @@ public class TProductInst implements Serializable {
 		this.proiName = proiName;
 	}
 
-	public BigDecimal getProiTodelete() {
-		return this.proiTodelete;
-	}
-
-	public void setProiTodelete(BigDecimal proiTodelete) {
-		this.proiTodelete = proiTodelete;
-	}
-
 	public String getProiVersion() {
 		return this.proiVersion;
 	}
@@ -244,12 +233,12 @@ public class TProductInst implements Serializable {
 		this.serId = serId;
 	}
 
-	public Date getSnaphotId() {
-		return this.snaphotId;
+	public Date getSnapshotId() {
+		return this.snapshotId;
 	}
 
-	public void setSnaphotId(Date snaphotId) {
-		this.snaphotId = snaphotId;
+	public void setSnapshotId(Date snapshotId) {
+		this.snapshotId = snapshotId;
 	}
 
 }
