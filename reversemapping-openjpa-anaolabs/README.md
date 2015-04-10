@@ -6,6 +6,7 @@ Un peu d'infos sur ce sous-module "openjpa"
 * Liens
 * Des Profiles Maven pour plusieurs exec-maven-plugin
 * Commandes Maven à lancer
+* Limitations des tools de OPenJPA
 
 
 ### Liens
@@ -31,5 +32,15 @@ Profiles Maven :
 ### Commandes Maven à lancer
 
 Les commandes Maven à lancer sont donc :
-	$ mvn -X -Preverse-schema exec:java 
-	$ mvn -X -Preverse-entities exec:java
+
+	mvn -X -Preverse-schema exec:java
+	mvn -X -Preverse-entities exec:java
+
+### Limitations des tools de OPenJPA
+
+###### 1) Le paramètre `-schemas` n'accepte pas de wildcard avec '\*', du genre `ET_DWH.*`.
+
+On est donc obligé de tout spécifier de manière exhaustive :
+
+	<argument>-schemas</argument>
+	<argument>ET_DWH.CLIENT,ET_DWH.ORGANISATION</argument>

@@ -45,13 +45,19 @@
 							<mainClass>org.apache.openjpa.jdbc.schema.SchemaTool</mainClass>
 							<arguments>
 								<argument>-action</argument>
+								<!-- argument>reflect</argument -->
+								<!-- argument>createDB</argument -->
 								<argument>reflect</argument>
 								<argument>-file</argument>
 								<argument>${reverse.schema}</argument>
 								<argument>-schemas</argument>
-								<argument>ET_DWH</argument>
+								<argument>ET_DWH.CLIENT,ET_DWH.ORGANISATION</argument>
 								<argument>-p</argument>
 								<argument>${persistence.location}</argument>
+								<argument>-openjpaTables</argument>
+								<argument>true</argument>
+								<argument>-sequences</argument>
+								<argument>false</argument>
 							</arguments>
 					 		<includePluginDependencies>true</includePluginDependencies>
 						</configuration>

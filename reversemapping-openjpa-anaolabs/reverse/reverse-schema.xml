@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemas>
     <schema name="ET_DWH">
-        <sequence name="BATCH_JOB_EXECUTION_SEQ"/>
-        <sequence name="BATCH_JOB_SEQ"/>
-        <sequence name="BATCH_STEP_EXECUTION_SEQ"/>
-        <sequence name="SEQ_CALENDAR"/>
-        <sequence name="SEQ_PRODUCT_OPTION_NAME"/>
+        <table name="CLIENT">
+            <pk name="PK_CLIENT" column="CLIID"/>
+            <column name="CLIID" type="decimal" type-name="NUMBER" not-null="true" size="4"/>
+            <column name="CLIAGENTLICENCECOUNT" type="decimal" type-name="NUMBER" size="6"/>
+            <column name="CLILOGO" type="varchar" type-name="VARCHAR2" size="2000"/>
+            <column name="CLIENABLED" type="varchar" type-name="VARCHAR2" size="1"/>
+        </table>
+        <table name="ORGANISATION">
+            <pk name="PK_ORGANISATION">
+                <on column="DATEKEY"/>
+                <on column="ORGANISATIONID"/>
+            </pk>
+            <column name="CLIID" type="decimal" type-name="NUMBER" not-null="true" size="4"/>
+            <column name="DATEKEY" type="decimal" type-name="NUMBER" not-null="true" size="22"/>
+            <column name="ORGANISATIONID" type="decimal" type-name="NUMBER" not-null="true" size="6"/>
+            <column name="ORGANISATIONNAME" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="ORGANISATIONLEVEL" type="varchar" type-name="VARCHAR2" size="32"/>
+            <column name="ORGANISATIONTYPE" type="varchar" type-name="VARCHAR2" size="32"/>
+            <column name="ORGANISATIONPATH" type="varchar" type-name="VARCHAR2" size="4000"/>
+            <column name="ORGANISATIONPARENTID" type="decimal" type-name="NUMBER" size="6"/>
+        </table>
     </schema>
 </schemas>
