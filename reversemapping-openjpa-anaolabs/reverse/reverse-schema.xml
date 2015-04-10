@@ -22,5 +22,87 @@
             <column name="ORGANISATIONPATH" type="varchar" type-name="VARCHAR2" size="4000"/>
             <column name="ORGANISATIONPARENTID" type="decimal" type-name="NUMBER" size="6"/>
         </table>
+        <table name="PRODUCT">
+            <pk name="PK_PRODUCT">
+                <on column="DATEKEY"/>
+                <on column="PRODUCTID"/>
+            </pk>
+            <column name="DATEKEY" type="decimal" type-name="NUMBER" not-null="true" size="22"/>
+            <column name="CLIID" type="decimal" type-name="NUMBER" not-null="true" size="4"/>
+            <column name="SERVERID" type="decimal" type-name="NUMBER" not-null="true" size="6"/>
+            <column name="PRODUCTNAMEID" type="decimal" type-name="NUMBER" size="22"/>
+            <column name="PRODUCTEDITOR" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="PRODUCTID" type="decimal" type-name="NUMBER" not-null="true" size="12"/>
+            <column name="PRODUCTCREATIONDATE" type="timestamp" type-name="DATE" size="7"/>
+            <column name="PRODUCTNAMESHORTCURT" type="varchar" type-name="VARCHAR2" size="32"/>
+            <column name="PRODUCTNAME" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="PRODUCTINSTANCENAME" type="varchar" type-name="VARCHAR2" size="500"/>
+            <column name="PRODUCTDBNAME" type="varchar" type-name="VARCHAR2" size="64"/>
+            <column name="PRODUCTINSTANCEHOSTNAME" type="varchar" type-name="VARCHAR2" size="64"/>
+            <column name="PRODUCTINSTANCESTATUS" type="varchar" type-name="VARCHAR2" size="200"/>
+            <column name="PRODUCTDBGLOBALNAME" type="varchar" type-name="VARCHAR2" size="4000"/>
+            <column name="PRODUCTDBROLE" type="varchar" type-name="VARCHAR2" size="50"/>
+            <column name="PRODUCTDBTYPE" type="varchar" type-name="VARCHAR2" size="32"/>
+            <column name="PRODUCTCATEGORY" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="PRODUCTINSTANCEISMONITORED" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="PRODUCTDBISARCHIVELOG" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="PRODUCTDBEDITION" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="PRODUCTDBVERSION" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="PRODUCTINSTANCEDATE" type="timestamp" type-name="DATE" size="7"/>
+            <column name="PRODUCTDBISDOWNGRADABLE" type="varchar" type-name="VARCHAR2" size="50"/>
+        </table>
+        <table name="SERVER">
+            <pk name="PK_SERVER">
+                <on column="DATEKEY"/>
+                <on column="SERVERID"/>
+            </pk>
+            <column name="DATEKEY" type="decimal" type-name="NUMBER" not-null="true" size="22"/>
+            <column name="CLIID" type="decimal" type-name="NUMBER" not-null="true" size="4"/>
+            <column name="SERVERID" type="decimal" type-name="NUMBER" not-null="true" size="6"/>
+            <column name="SERVERCLUSTERNAME" type="varchar" type-name="VARCHAR2" size="64"/>
+            <column name="SERVEROPERATINGSYSTEMID" type="decimal" type-name="NUMBER" size="22"/>
+            <column name="SERVEROPERATINGSYSTEMNAME" type="varchar" type-name="VARCHAR2" size="32"/>
+            <column name="SERVEROPERATINGSYSTEMVERSION" type="varchar" type-name="VARCHAR2" size="32"/>
+            <column name="SERVERCATEGORY" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="SERVERNAME" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERISACTIVE" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="SERVERAGENTUP" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="SERVERCRITICITY" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="SERVERLABEL" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERCOUNTRY" type="varchar" type-name="VARCHAR2" size="32"/>
+            <column name="SERVERGROUP" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERGROUPTYPE" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="SERVERPROCESSORCOUNT" type="decimal" type-name="NUMBER" size="6"/>
+            <column name="SERVERPROCESSORTYPE" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERRAMSIZE" type="varchar" type-name="VARCHAR2" size="12"/>
+            <column name="SERVERLIFECHECKFREQUENCY" type="decimal" type-name="NUMBER" size="5"/>
+            <column name="SERVERDUTY" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERCORECOUNT" type="decimal" type-name="NUMBER" size="4" decimal-digits="1"/>
+            <column name="SERVERCORECOUNTWITHCOREFACTOR" type="decimal" type-name="NUMBER" size="4" decimal-digits="1"/>
+            <column name="SERVERCOREFACTORAPPLIED" type="decimal" type-name="NUMBER" size="1" decimal-digits="3"/>
+            <column name="SERVERISVIRTUALIZED" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="SERVERVIRTUALIZATIONID" type="decimal" type-name="NUMBER" size="22"/>
+            <column name="SERVERVIRTUALIZATIONNAME" type="varchar" type-name="VARCHAR2" size="32"/>
+            <column name="SERVERTYPE" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERPROCESSORSMTACTIVE" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="SERVERMAXSOCKET" type="decimal" type-name="NUMBER" size="3"/>
+            <column name="SERVERPROCESSORTHREADBYCORE" type="decimal" type-name="NUMBER" size="22"/>
+            <column name="SERVERMANUFACTURER" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERMODEL" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERPARTITIONINFO" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERPROCESSORFREQUENCY" type="varchar" type-name="VARCHAR2" size="20"/>
+            <column name="SERVERISLMONLY" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="SERVERPURCHASEDATE" type="timestamp" type-name="DATE" size="7"/>
+            <column name="SERVERPARTITIONTYPE" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERPARTITIONMODE" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERCPUCOUNTBYPARTITION" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERMAXCPUPARTITION" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERPOOLNAME" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERMAXCPUPOOL" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERCPUPOOLCAPACITY" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERCPUPOOLACTIVE" type="varchar" type-name="VARCHAR2" size="255"/>
+            <column name="SERVERISIMPORTED" type="varchar" type-name="VARCHAR2" size="100"/>
+            <column name="SERVERAGENTVERSION" type="varchar" type-name="VARCHAR2" size="50"/>
+        </table>
     </schema>
 </schemas>

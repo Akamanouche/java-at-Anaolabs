@@ -16,6 +16,12 @@
 		<!-- OpenJPA Reverse mapping -->
 		<persistence.location>reverse/reverse-persistence.xml</persistence.location>
 		<reverse.schema>reverse/reverse-schema.xml</reverse.schema>
+		<reverse.tables.tobeparsed>
+		ET_DWH.CLIENT,
+		ET_DWH.PRODUCT,
+		ET_DWH.SERVER,
+		ET_DWH.ORGANISATION,
+		</reverse.tables.tobeparsed>
 	</properties>
 
 	
@@ -51,7 +57,7 @@
 								<argument>-file</argument>
 								<argument>${reverse.schema}</argument>
 								<argument>-schemas</argument>
-								<argument>ET_DWH.CLIENT,ET_DWH.ORGANISATION</argument>
+								<argument>${reverse.tables.tobeparsed}</argument>
 								<argument>-p</argument>
 								<argument>${persistence.location}</argument>
 								<argument>-openjpaTables</argument>
@@ -117,16 +123,27 @@
 						      <argument>-primaryKeyOnJoin</argument>
 						      <argument>false</argument>
 						      <argument>-annotations</argument>
-						      <argument>false</argument>
+						      <argument>true</argument>
 						      <argument>-p</argument>
 						      <argument>${persistence.location}</argument>
-						      <!-- Les wildcards ne fonctionnent pas vraiment... -->
+						      
+						      <!-- schemas : exhaustive definition
+						      		- wildcard NOT ACCEPTED
+						      		- alternative : see below based on generated schema file
+						      -->
+						      <!--
 						      <argument>-schemas</argument>
-						      <argument>ET_DWH.CLIENT</argument>
-						      <!-- argument>-schemas</argument><argument>ET_FND.*</argument -->
+						      <argument>ET_DWH.CLIENT,ET_DWH.PRODUCT</argument>
+						      -->
 						      <!-- Do not generate orm.xml file -->
 						      <argument>-metadata</argument>
 						      <argument>none</argument>
+						      
+						      <!-- FINAL ARGUMENT is schema to be reversed 
+						      		(based on previously generated schema file
+						      -->
+						      <argument>${reverse.schema}</argument>
+						      
 						    </arguments>
 		
 							<includePluginDependencies>true</includePluginDependencies>
