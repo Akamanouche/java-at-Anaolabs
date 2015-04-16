@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.anaolabs.java</groupId>
@@ -8,19 +9,170 @@
   <packaging>pom</packaging>
   <modules>
   	<module>spring-anaolabs</module>
-  	
-  	<!--
   	<module>reversemapping-openjpa-anaolabs</module>
   	<module>reversemapping-jpatools-anaolabs</module>
-  	-->
+    <module>reststuff/rest-anaolabs-smell</module>
+    <module>jpastuff/jpa-anaolabs-smell</module>
   </modules>
-  <dependencyManagement>
-  	<dependencies>
-  		<dependency>
-  			<groupId>junit</groupId>
-  			<artifactId>junit</artifactId>
-  			<version>4.8.2</version>
-  		</dependency>
-  	</dependencies>
-  </dependencyManagement>
+
+	<properties>
+		<!-- Runtime environment versions -->
+		<java.version>1.7</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Runtime libraries versions -->
+		<version.spring-framework>4.1.5.RELEASE</version.spring-framework>
+		<version.spring-batch>3.0.3.RELEASE</version.spring-batch>
+		<version.commons-lang3>3.3.2</version.commons-lang3>
+		
+		<hibernate.libs>3.5.0-Final</hibernate.libs>
+		<version.logback>1.1.2</version.logback>
+		<version.slf4j>1.7.7</version.slf4j>
+
+		<!-- Testing libraries versions -->
+		<junit.version>4.11</junit.version>
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+		
+			<!-- JPA implementations -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-annotations</artifactId>
+				<version>${hibernate.libs}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<!-- Hibernate JPA Support -->
+			<dependency>
+			   <groupId>org.hibernate</groupId>
+			   <artifactId>hibernate-entitymanager</artifactId>
+			   <version>${hibernate.libs}</version>
+			   <scope>runtime</scope>
+			</dependency>
+		
+			<!-- JDBC datasources -->
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc6</artifactId>
+				<version>11.2.0</version>
+			</dependency>
+		
+			<!-- Spring Core -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${version.spring-framework}</version>
+			</dependency>
+			<!-- Spring AOP -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${version.spring-framework}</version>
+			</dependency>
+			<!-- Spring Beans -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${version.spring-framework}</version>
+			</dependency>
+			<!-- Spring Context -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${version.spring-framework}</version>
+			</dependency>
+			<!-- Spring Expression -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${version.spring-framework}</version>
+			</dependency>
+			<!-- Spring JDBC -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${version.spring-framework}</version>
+			</dependency>
+			<!-- Spring Transaction -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${version.spring-framework}</version>
+			</dependency>
+			<!-- Spring ORM -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${version.spring-framework}</version>
+			</dependency>			
+
+			<!-- Spring Batch -->
+			<dependency>
+				<groupId>org.springframework.batch</groupId>
+				<artifactId>spring-batch-core</artifactId>
+				<version>${version.spring-batch}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.batch</groupId>
+				<artifactId>spring-batch-test</artifactId>
+				<version>${version.spring-batch}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Spring Test -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${version.spring-framework}</version>
+			</dependency>
+
+			<!-- Commons Lang -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${version.commons-lang3}</version>
+			</dependency>
+			
+			<!-- Logging -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${version.logback}</version>
+			</dependency>
+			<dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>slf4j-api</artifactId>
+				<version>${version.slf4j}</version>
+        	</dependency>			
+			<dependency>
+	            <groupId>ch.qos.logback</groupId>
+	            <artifactId>logback-core</artifactId>
+				<version>${version.logback}</version>
+    	    </dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+    	    
+			<!-- UnitTest -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+
+
 </project>

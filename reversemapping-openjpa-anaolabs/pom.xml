@@ -17,12 +17,105 @@
 		<persistence.location>reverse/reverse-persistence.xml</persistence.location>
 		<reverse.schema>reverse/reverse-schema.xml</reverse.schema>
 		<reverse.tables.tobeparsed>
-		ET_DWH.CLIENT,
-		ET_DWH.PRODUCT,
-		ET_DWH.SERVER,
-		ET_DWH.ORGANISATION,
+		DOMAINS
 		</reverse.tables.tobeparsed>
 	</properties>
+
+	<dependencies>
+	
+		<!-- MySQL driver -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.35</version>
+		</dependency>
+				
+		<!-- JPA implementations -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+		</dependency>
+
+		<!-- Spring Core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<!-- Spring AOP -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<!-- Spring Beans -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<!-- Spring Context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<!-- Spring Expression -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+		</dependency>
+		<!-- Spring JDBC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<!-- Spring Transaction -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+
+		<!-- Spring Batch -->
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Spring Test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+
+		<!-- Commons Lang -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+       	</dependency>			
+
+		<!-- UnitTest -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 	
 	<!--
@@ -78,10 +171,17 @@
 								<artifactId>openjpa-all</artifactId>
 								<version>2.3.0</version>
 							</dependency>
+							<!--
 							<dependency>
 								<groupId>com.oracle</groupId>
 								<artifactId>ojdbc6</artifactId>
 								<version>11.2.0</version>
+							</dependency>
+							-->
+							<dependency>
+								<groupId>mysql</groupId>
+								<artifactId>mysql-connector-java</artifactId>
+								<version>5.1.35</version>
 							</dependency>
 						</dependencies>
 					</plugin>
@@ -115,7 +215,7 @@
 						      <argument>-useGenericCollections</argument>
 						      <argument>false</argument>
 						      <argument>-package</argument>
-						      <argument>org.anaolabs.easytrust.model.etdwh</argument>
+						      <argument>org.anaolabs.jpa.intotek.model</argument>
 						      <argument>-innerIdentityClasses</argument>
 						      <argument>true</argument>
 						      <argument>-useBuiltinIdentityClass</argument>
@@ -131,18 +231,19 @@
 						      		- wildcard NOT ACCEPTED
 						      		- alternative : see below based on generated schema file
 						      -->
-						      <!--
 						      <argument>-schemas</argument>
-						      <argument>ET_DWH.CLIENT,ET_DWH.PRODUCT</argument>
-						      -->
+						      <argument>${reverse.tables.tobeparsed}</argument>
+
 						      <!-- Do not generate orm.xml file -->
 						      <argument>-metadata</argument>
 						      <argument>none</argument>
 						      
 						      <!-- FINAL ARGUMENT is schema to be reversed 
-						      		(based on previously generated schema file
-						      -->
+						      		(based on previously generated schema file)
+						      		
 						      <argument>${reverse.schema}</argument>
+						      -->
+
 						      
 						    </arguments>
 		
@@ -159,11 +260,19 @@
 								<artifactId>openjpa-all</artifactId>
 								<version>2.3.0</version>
 							</dependency>
+							<!--
 							<dependency>
 								<groupId>com.oracle</groupId>
 								<artifactId>ojdbc6</artifactId>
 								<version>11.2.0</version>
 							</dependency>
+							-->
+							<dependency>
+								<groupId>mysql</groupId>
+								<artifactId>mysql-connector-java</artifactId>
+								<version>5.1.35</version>
+							</dependency>
+
 						</dependencies>
 					</plugin>
 			    </plugins>

@@ -1,0 +1,44 @@
+# Connexion initiale
+	> mysql --user root --password=changeme
+
+# Creation d'une nouvelle database ("intotek") et d'une table ("DOMAINS")
+
+	mysql> create database intotek;
+
+	mysql> use intotek;
+
+	mysql> show databases;
+		+--------------------+
+		| Database           |
+		+--------------------+
+		| information_schema |
+		| intotek            |
+		| mysql              |
+		| performance_schema |
+		+--------------------+
+		4 rows in set (0,00 sec)
+
+	mysql> select database();
+		+------------+
+		| database() |
+		+------------+
+		| intotek    |
+		+------------+
+		1 row in set (0,00 sec)
+
+	mysql> /home/sylvain/github-workspace/as-akamanouche/java-at-Anaolabs/jpastuff/jpa-anaolabs-smell/scripts/sql/schema-mysql.sql
+
+	mysql> show tables;
+		+-------------------+
+		| Tables_in_intotek |
+		+-------------------+
+		| DOMAINS           |
+		+-------------------+
+		1 row in set (0,01 sec)
+
+	mysql> quit;
+
+
+# re-connexion directe sur la database creee
+
+	> mysql --user root --password=changeme -p intotek
