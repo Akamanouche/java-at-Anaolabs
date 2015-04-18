@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <appender name="appliFileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>log/anaolabs-jpastuff-application.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="hibernateFileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>log/anaolabs-jpastuff-hibernate.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="springFileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>log/anaolabs-jpastuff-spring.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+        	<!--
+            <pattern>%-5relative %-5level %logger{35} - %msg%n</pattern>
+            -->
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- Logger for Hibernate Fwk Apis -->
+	<logger name="org.hibernate" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="hibernateFileAppender" />
+	</logger>
+    
+    <!-- Logger for Spring Fwk Apis -->
+	<logger name="org.springframework" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="springFileAppender" />
+	</logger>
+	
+    <!-- Overall logger for DWH application -->
+	<logger name="org.anaolabs.jpa" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="appliFileAppender" />
+	</logger>
+	    
+    <root level="INFO">
+        <appender-ref ref="consoleAppender" />
+    </root>
+    
+</configuration>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+	<!--
+		***********************************************************************
+		* DATASOURCES for READERS 
+		***********************************************************************
+	 -->
+	 
+	<bean id="inDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="%[inDataSource.driverClassName]" />
+		<property name="url" value="%[inDataSource.url]" />
+		<property name="username" value="%[inDataSource.username]" />
+		<property name="password" value="%[inDataSource.password]" />
+	</bean>
+
+	<!-- ********************************* -->		
+	<!-- C3P0 Pooled Datasource ? (TODO)   -->
+	<!-- ********************************* -->
+	
+</beans>

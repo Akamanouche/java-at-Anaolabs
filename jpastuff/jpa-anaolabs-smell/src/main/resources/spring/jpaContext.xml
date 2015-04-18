@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+
+	<!-- ********************************** -->		
+	<!-- Hibernate / JPA Adapter definition -->
+	<!-- ********************************** -->
+
+	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+    	<property name="databasePlatform" value="%[jpa.database.platform]" />
+    	<property name="showSql" value="%[hibernate.show_sql]" />
+    	<property name="generateDdl" value="%[jpa.generate.ddl]" />
+	</bean>
+
+	<!-- JPA EntityManagerFactory -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+
+		<property name="dataSource" ref="inDataSource" />				
+		<property name="jpaVendorAdapter" ref="jpaAdapter" />				
+		<property name="jpaProperties">
+			<props>
+				<!-- JPA parameters -->
+				<prop key="jpa.dialect">%[jpa.dialect]</prop>
+				<prop key="jpa.vendor.adapter">%[jpa.vendor.adapter]</prop>
+								
+				<!-- Hibernate : Main Session parameters -->								
+				<prop key="hibernate.connection.driver_class">%[inDataSource.driverClassName]</prop>
+				<prop key="hibernate.connection.url">%[inDataSource.url]</prop>								
+				<prop key="hibernate.dialect">%[hibernate.dialect]</prop>
+				<prop key="hibernate.connection.username">%[inDataSource.username]</prop>
+				<prop key="hibernate.connection.password">%[inDataSource.password]</prop>				
+				<prop key="hibernate.hbm2ddl.auto">%[hibernate.hbm2ddl.auto]</prop>
+				<prop key="hibernate.show_sql">%[hibernate.show_sql]</prop>
+				<prop key="hibernate.format_sql">%[hibernate.show_sql]</prop>
+				<prop key="hibernate.generate_statistics">%[hibernate.statistics]</prop>
+				
+				<!-- Hibernate : Batch parameters  -->
+				<!--																			
+				<prop key="hibernate.max_fetch_depth">%[hibernate.max_fetch_depth]</prop>				
+				<prop key="hibernate.jdbc.batch_size">%[hibernate.jdbc.batch_size]</prop>				
+				<prop key="hibernate.connection.pool_size">%[hibernate.connection.pool_size]</prop>
+				<prop key="hibernate.order_inserts">%[hibernate.order_inserts]</prop>
+				<prop key="hibernate.order_updates">%[hibernate.order_updates]</prop>
+				-->
+				
+				<!-- Hibernate : Transaction parameters -->
+				<!--
+				<prop key="hibernate.current_session_context_class">%[hibernate.session_context_class]</prop>
+				<prop key="hibernate.connection.release_mode">%[hibernate.conn.release_mode]</prop>
+				-->
+								
+				<!-- Hibernate : Cache configuration -->
+				<!-- (TODO) -->
+				
+				<!-- Hibernate : C3P0 Pooled Connection parameters -->
+				<!-- (TODO) -->
+						
+			</props>
+		</property>						
+		
+ 		<property name="persistenceUnitName">
+			<value>jpa-anaolabs-smell</value>
+		</property>
+		
+		<property name="persistenceXmlLocation">
+			<value>classpath*:META-INF/persistence.xml</value>
+		</property>
+	</bean>
+	
+	<!-- Inject an EntityManager in subclasses of GenericDao, which includes @PersistenceContext annotation -->
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<!-- Convert database exception to Spring DataAccessException for every class with @Repository annotation -->
+	<!-- bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" / -->
+	
+
+</beans>
