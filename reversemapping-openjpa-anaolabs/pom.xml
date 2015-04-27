@@ -16,12 +16,12 @@
 		<!-- OpenJPA Reverse mapping -->
 		<persistence.location>reverse/reverse-persistence.xml</persistence.location>
 		<reverse.schema>reverse/reverse-schema.xml</reverse.schema>
-		<reverse.tables.tobeparsed>
+		<reverse.tables.list>
 		ET_DWH.CLIENT,
 		ET_DWH.PRODUCT,
 		ET_DWH.SERVER,
 		ET_DWH.ORGANISATION,
-		</reverse.tables.tobeparsed>
+		</reverse.tables.list>
 	</properties>
 
 	
