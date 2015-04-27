@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <appender name="appliFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/easytrust-dwh-batch-application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        	<FileNamePattern>log/hsql-anaolabs-%d{yyyy-MM-dd}.log</FileNamePattern>
+        	<maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+
+    </appender>
+    
+    <appender name="springFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/easytrust-dwh-batch-spring.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        	<FileNamePattern>log/hsql-anaolabs-spring-%d{yyyy-MM-dd}.log</FileNamePattern>
+        	<maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <appender name="hibernateFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/easytrust-dwh-batch-hibernate.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        	<FileNamePattern>log/hsql-anaolabs-hibernate-%d{yyyy-MM-dd}.log</FileNamePattern>
+        	<maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+        	<!--
+            <pattern>%-5relative %-5level %logger{35} - %msg%n</pattern>
+            -->
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- Logger for Spring Fwk Apis -->
+	<logger name="org.springframework" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="springFileAppender" />
+	</logger>
+    
+    <!-- Logger for Hibernate Fwk Apis -->
+	<logger name="org.hibernate">
+		<level value="INFO" />
+		<appender-ref ref="hibernateFileAppender" additivity="false"/>
+	</logger>
+	
+    <!-- Overall logger for DWH application -->
+	<logger name="com.easyteam.easytrust.dwh">
+		<level value="TRACE" />
+		<appender-ref ref="appliFileAppender" additivity="false"/>
+	</logger>
+	    
+    <root level="INFO">
+        <appender-ref ref="consoleAppender" />
+    </root>
+    
+</configuration>
