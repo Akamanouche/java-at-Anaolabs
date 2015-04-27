@@ -26,26 +26,37 @@
 		<version.commons-lang3>3.3.2</version.commons-lang3>
 		
 		<hibernate.libs>3.5.0-Final</hibernate.libs>
+		
+		<!-- Logging libraries -->
 		<version.logback>1.1.2</version.logback>
 		<version.slf4j>1.7.7</version.slf4j>
+		<version.log4j>1.2.17</version.log4j>
 
 		<!-- Testing libraries versions -->
 		<junit.version>4.11</junit.version>
 
 		<!-- SQL Drivers -->
 		<mysql.version>5.1.35</mysql.version>
+		<driver.hsql>2.3.2</driver.hsql>
 
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 		
-			<!-- MySQL driver -->
+			<!-- Database drivers -->
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${driver.hsql}</version>
+				<scope>test</scope>
+			</dependency>			
 		
 			<!-- JPA implementations -->
 			<dependency>
@@ -162,6 +173,11 @@
 	            <artifactId>logback-core</artifactId>
 				<version>${version.logback}</version>
     	    </dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${version.log4j}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jcl-over-slf4j</artifactId>
