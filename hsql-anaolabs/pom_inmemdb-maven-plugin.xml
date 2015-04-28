@@ -82,59 +82,63 @@
                 </executions>
 			</plugin>
 
-			<!-- PLUGIN 1 : "SQL Maven Plugin" 
-				* see : 
-					* http://mojo.codehaus.org/sql-maven-plugin/index.html
-					* http://mojo.codehaus.org/sql-maven-plugin/execute-mojo.html
-				* pre-requisite : Maven failsafe Plugin ? (pas nessairement)
-				* validé/résultat ? OK mais...
-				* testé sur URL :
-					* OK : "jdbc:hsqldb:mem:test"
-					* NOK : "jdbc:hsqldb:hsql://localhost/xdb" (erreur: Connection refused )
-					* NOK : "mem:xdb" (erreur: Connection refused )
+			<!-- PLUGIN 3 : "In-Memory Database Maven Plugin" 
+				* see :
+					* http://inmemdb-maven-plugin.btmatthews.com/index.html
+					* https://github.com/bmatthews68/inmemdb-maven-plugin
+					* http://inmemdb-maven-plugin.btmatthews.com/usage.html
+				* pre-requisite : Maven failsafe Plugin (phases "pre-integration-test" et "post-integration-test")
+				* validé/résultat ? 
+				* Cnx avec DBVisualizer : 
+					* type Driver :		"HSQLDB Embedded"
+					* load driver :		/usr/local/hsqldb/hsqldb-2.3.2/hsqldb/lib/hsqldb.jar
+					* Settings Format : "Database URL"
+					* Database URL" :	jdbc:hsqldb:mem:test
+					* Database UserId:	SA
+					* Database Pwd:		(rien)
 			-->
 			<plugin>
-	            <groupId>org.codehaus.mojo</groupId>
-	            <artifactId>sql-maven-plugin</artifactId>
-	            <version>1.5</version>
-	            <dependencies>
-	                <dependency>
-	                    <groupId>org.hsqldb</groupId>
-	                    <artifactId>hsqldb</artifactId>
-	                    <version>${driver.hsql}</version>
-	                </dependency>
-	            </dependencies>
-	            
-	            <!-- BE AWARE OF : 
-	            	* la configuration DOIT ETRE au niveau général du plugin, pas dans une "execution"
-	           	-->
+				<groupId>com.btmatthews.maven.plugins.inmemdb</groupId>
+				<artifactId>inmemdb-maven-plugin</artifactId>
+				<version>1.4.3</version>
 				<configuration>
-				    <driver>org.hsqldb.jdbcDriver</driver>
-				    <url>jdbc:hsqldb:mem:myInMemoryDb</url>
-				    <username>SA</username>
-				    <password></password>
-				    <autocommit>true</autocommit>
-				 	<orderFile>descending</orderFile>
-				 	<fileset>
-						<basedir>src/test/resources/sql</basedir>
-						<includes>
-							<include>*.sql</include>
-						</includes>
-				 	</fileset>
-					<outputFile>target/sql-outputs.txt</outputFile>
-					<printResultSet>true</printResultSet>
-				</configuration>
-
-	            <executions>
-	                <execution>
-		                <id>create-db</id>
-		                <phase>pre-integration-test</phase>
-	                    <goals>
-	                        <goal>execute</goal>
-	                    </goals>
-	                </execution>
-	            </executions>
-	        </plugin>
+                    <monitorKey>inmemdb</monitorKey>
+                    <monitorPort>11527</monitorPort>
+                </configuration>
+				<executions>
+				    <execution>
+				        <id>start-db</id>
+				        <goals>
+				            <goal>run</goal>
+				        </goals>
+				        <phase>pre-integration-test</phase>
+				        <configuration>
+				            <daemon>true</daemon>
+				            <type>hsqldb</type>
+				            <database>test</database>
+				            <username>sa</username>
+				            <password></password>
+				            <sources>
+				                <script>
+				                    <sourceFile>src/test/resources/sql/hsql-create.sql</sourceFile>
+				                </script>
+				                <!--
+				                <dataSet>
+				                    <sourceFile>src/test/resources/users.dbunit.xml</sourceFile>
+				                </dataSet>
+				                -->
+				            </sources>
+				        </configuration>
+					</execution>
+				    <execution>
+				        <id>stop-db</id>
+				        <phase>post-integration-test</phase>
+				        <goals>
+				            <goal>stop</goal>
+				        </goals>
+				    </execution>
+				</executions>
+			</plugin>
 							
 	    </plugins>
 	</build>

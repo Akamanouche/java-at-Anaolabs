@@ -41,6 +41,7 @@
 
 	</properties>
 
+
 	<dependencyManagement>
 		<dependencies>
 		
@@ -55,7 +56,6 @@
 				<groupId>org.hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
 				<version>${driver.hsql}</version>
-				<scope>test</scope>
 			</dependency>			
 		
 			<!-- JPA implementations -->

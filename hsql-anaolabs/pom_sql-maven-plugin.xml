@@ -83,9 +83,7 @@
 			</plugin>
 
 			<!-- PLUGIN 1 : "SQL Maven Plugin" 
-				* see : 
-					* http://mojo.codehaus.org/sql-maven-plugin/index.html
-					* http://mojo.codehaus.org/sql-maven-plugin/execute-mojo.html
+				* see : http://mojo.codehaus.org/sql-maven-plugin/index.html
 				* pre-requisite : Maven failsafe Plugin ? (pas nessairement)
 				* validé/résultat ? OK mais...
 				* testé sur URL :
@@ -101,13 +99,11 @@
 	                <dependency>
 	                    <groupId>org.hsqldb</groupId>
 	                    <artifactId>hsqldb</artifactId>
-	                    <version>${driver.hsql}</version>
+	                    <version>2.3.2</version>
 	                </dependency>
 	            </dependencies>
 	            
-	            <!-- BE AWARE OF : 
-	            	* la configuration DOIT ETRE au niveau général du plugin, pas dans une "execution"
-	           	-->
+	            <!-- La configuration DOIT ETRE au niveau général du plugin, pas dans une "execution" -->
 				<configuration>
 				    <driver>org.hsqldb.jdbcDriver</driver>
 				    <url>jdbc:hsqldb:mem:myInMemoryDb</url>
@@ -121,8 +117,6 @@
 							<include>*.sql</include>
 						</includes>
 				 	</fileset>
-					<outputFile>target/sql-outputs.txt</outputFile>
-					<printResultSet>true</printResultSet>
 				</configuration>
 
 	            <executions>
