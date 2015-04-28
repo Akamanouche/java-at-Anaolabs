@@ -31,6 +31,13 @@ Dans la log en console, on constate que :
 - le goal "execute" du sql-maven-plugin est bien lancé et les fichiers SQL chargés
 - le Test d'Intégration est bien lancé
 
+
+#### TO FIX
+
+1) Le lancement de test (par "maven-failsafe-plugin") basé sur les Categories JUnit ne fonctionne pas encore !...
+- voir : http://maven.apache.org/surefire/maven-failsafe-plugin/examples/junit.html
+
+
 #### TODOs
 
 1) Bien intégrer le plugin "sql-maven-plugin" :
