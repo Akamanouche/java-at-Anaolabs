@@ -1,0 +1,11 @@
+#######################################
+# EasyTrust standard GIT attributes
+#######################################
+
+# By default, all source files MUST BE commited with LF line-ending (Linux style)
+* text=auto
+
+# Denote all binary files that should not be modified (TO BE COMPLETED LATER)
+*.png binary
+*.jpg binary		
+
