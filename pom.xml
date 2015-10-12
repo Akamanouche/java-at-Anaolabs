@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.anaolabs.java</groupId>
-  <artifactId>java-at-Anaolabs</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Java stuff at Anaolabs</name>
-  <description>Java stuff (scriptlets, tests) @Anaolabs</description>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>spring-anaolabs</module>
-  	<module>reversemapping-openjpa-anaolabs</module>
-  	<module>reversemapping-jpatools-anaolabs</module>
-    <module>reststuff/rest-anaolabs-smell</module>
-    <module>jpastuff/jpa-anaolabs-smell</module>
-  </modules>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.anaolabs.java</groupId>
+	<artifactId>java-at-Anaolabs</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>Java stuff at Anaolabs</name>
+	<description>Java stuff (scriptlets, tests) @Anaolabs</description>
+	<packaging>pom</packaging>
+	
+	<modules>
+		<module>spring-anaolabs</module>
+		<module>reversemapping-openjpa-anaolabs</module>
+		<module>reversemapping-jpatools-anaolabs</module>
+		<module>reststuff/rest-anaolabs-smell</module>
+		<module>jpastuff/jpa-anaolabs-smell</module>
+	</modules>
 
+	<!-- 
+		*********************************
+		* FOR MAVEN RELEASE PLUGIN
+		*********************************
+	-->
+	<scm>
+		<developerConnection>scm:git:https://github.com/Akamanouche/java-at-Anaolabs</developerConnection>
+	</scm>
+
+	<!-- 
+		*********************************
+		* COMMON PROPERTIES
+		*********************************
+	-->
 	<properties>
 		<!-- Runtime environment versions -->
 		<java.version>1.7</java.version>
@@ -42,6 +57,7 @@
 		<!-- Plugins -->
 		<failsafe.version>2.18.1</failsafe.version>
 		<sqlplugin.version>1.5</sqlplugin.version>
+		<release.plugin>2.5.2</release.plugin>
 
 	</properties>
 
@@ -242,6 +258,16 @@
 		                </dependency>
 		            </dependencies>
 		        </plugin>
+
+				<!-- Maven Release Plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${release.plugin}</version>
+					<configuration>
+						<tagBase>https://github.com/Akamanouche/java-at-Anaolabs/releases</tagBase>
+					</configuration>
+				</plugin>
 				
 			</plugins>
 		</pluginManagement>
