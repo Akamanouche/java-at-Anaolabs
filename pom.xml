@@ -266,6 +266,7 @@
 					<version>${release.plugin}</version>
 					<configuration>
 						<tagBase>https://github.com/Akamanouche/java-at-Anaolabs/releases</tagBase>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
 					</configuration>
 				</plugin>
 				
