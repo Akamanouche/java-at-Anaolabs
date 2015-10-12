@@ -1,7 +1,7 @@
+# voir: http://docs.travis-ci.com/user/getting-started/
+
 language: java
 jdk:
   - oraclejdk8
   - oraclejdk7
-  - openjdk7
-  - openjdk6
 

@@ -12,6 +12,7 @@ import junit.framework.Assert;
 
 import org.anaolabs.jpa.daos.impl.DomainJpaDao;
 import org.anaolabs.jpa.entities.Domain;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/applicationContext.xml" })
+@Ignore
 public class DomainJpaDaoTest {
 
 	@Autowired
