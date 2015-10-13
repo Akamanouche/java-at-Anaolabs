@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.anaolabs.java</groupId>
 	<artifactId>java-at-Anaolabs</artifactId>
-	<version>2.2.0-SNAPSHOT</version>
+	<version>2.2.0</version>
 	<name>Java stuff at Anaolabs</name>
 	<description>Java stuff (scriptlets, tests) @Anaolabs</description>
 	<packaging>pom</packaging>
@@ -25,7 +25,8 @@
 		<url>http://github.com/Akamanouche/java-at-Anaolabs.git</url>
 		<connection>scm:git:git://github.com/Akamanouche/java-at-Anaolabs.git</connection>
 		<developerConnection>scm:git:https://github.com/Akamanouche/java-at-Anaolabs.git</developerConnection>
-	</scm>
+	  <tag>v2.2.0</tag>
+  </scm>
 	
 
 	<!-- 
