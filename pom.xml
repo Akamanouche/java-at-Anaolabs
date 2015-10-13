@@ -23,12 +23,12 @@
 	-->
 	<scm>
 		<!-- Tel qu'inspiré de "spring-batch-admin" -->
+		<!--
 		<url>http://github.com/Akamanouche/java-at-Anaolabs</url>
 		<connection>scm:git:git://github.com/Akamanouche/java-at-Anaolabs.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/Akamanouche/java-at-Anaolabs.git</developerConnection>
-		<!--
-		<developerConnection>scm:git:https://github.com/Akamanouche/java-at-Anaolabs.git</developerConnection>
 		-->
+		<developerConnection>scm:git:https://github.com/Akamanouche/java-at-Anaolabs.git</developerConnection>
 	</scm>
 	
 
