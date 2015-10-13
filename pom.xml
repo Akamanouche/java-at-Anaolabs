@@ -22,8 +22,15 @@
 		*********************************
 	-->
 	<scm>
-		<developerConnection>scm:git:https://github.com/Akamanouche/java-at-Anaolabs</developerConnection>
+		<!-- Tel qu'inspiré de "spring-batch-admin" -->
+		<url>http://github.com/Akamanouche/java-at-Anaolabs</url>
+		<connection>scm:git:git://github.com/Akamanouche/java-at-Anaolabs.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/Akamanouche/java-at-Anaolabs.git</developerConnection>
+		<!--
+		<developerConnection>scm:git:https://github.com/Akamanouche/java-at-Anaolabs.git</developerConnection>
+		-->
 	</scm>
+	
 
 	<!-- 
 		*********************************
@@ -224,6 +231,27 @@
 
 	</dependencyManagement>
 
+
+	<!-- ******************************************* -->
+	<!-- Distribuiton management (e.g: for Releases) -->
+	<!-- ******************************************* -->
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>central</id>
+			<name>easytrust-releases</name>
+			<url>http://5.135.48.105/artifactory/libs-release-local</url>
+		</repository>
+		<!--
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>snapshot</id>
+			<name>easytrust-snapshots</name>
+			<url>http://5.135.48.105/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+		-->
+	</distributionManagement>
+
 	<!-- ************************** -->
 	<!-- PROJECT PLUGINS management -->
 	<!-- ************************** -->
@@ -267,6 +295,11 @@
 					<configuration>
 						<tagBase>https://github.com/Akamanouche/java-at-Anaolabs/releases</tagBase>
 						<tagNameFormat>v@{project.version}</tagNameFormat>
+						<!--						
+				        <useReleaseProfile>false</useReleaseProfile>
+				        <releaseProfiles>release</releaseProfiles>
+				        <autoVersionSubmodules>true</autoVersionSubmodules>
+				        -->
 					</configuration>
 				</plugin>
 				
