@@ -1,20 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.anaolabs.java</groupId>
-  <artifactId>java-at-Anaolabs</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Java stuff at Anaolabs</name>
-  <description>Java stuff (scriptlets, tests) @Anaolabs</description>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>spring-anaolabs</module>
-  	<module>reversemapping-openjpa-anaolabs</module>
-  	<module>reversemapping-jpatools-anaolabs</module>
-    <module>reststuff/rest-anaolabs-smell</module>
-    <module>jpastuff/jpa-anaolabs-smell</module>
-  </modules>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.anaolabs.java</groupId>
+	<artifactId>java-at-Anaolabs</artifactId>
+	<version>2.1.0-SNAPSHOT</version>
+	<name>Java stuff at Anaolabs</name>
+	<description>Java stuff (scriptlets, tests) @Anaolabs</description>
+	<packaging>pom</packaging>
+	
+	<modules>
+		<module>spring-anaolabs</module>
+		<module>reversemapping-openjpa-anaolabs</module>
+		<module>reversemapping-jpatools-anaolabs</module>
+		<module>reststuff/rest-anaolabs-smell</module>
+		<module>jpastuff/jpa-anaolabs-smell</module>
+	</modules>
 
+	<!-- 
+		*********************************
+		* FOR MAVEN RELEASE PLUGIN
+		*********************************
+	-->
+	<scm>
+		<!-- Tel qu'inspiré de "spring-batch-admin" -->
+		<!--
+
+
+		<developerConnection>scm:git:ssh://git@github.com/Akamanouche/java-at-Anaolabs.git</developerConnection>
+		-->
+		<url>http://github.com/Akamanouche/java-at-Anaolabs.git</url>
+		<connection>scm:git:git://github.com/Akamanouche/java-at-Anaolabs.git</connection>
+		<developerConnection>scm:git:https://github.com/Akamanouche/java-at-Anaolabs.git</developerConnection>
+	  <tag>HEAD</tag>
+  </scm>
+	
+
+	<!-- 
+		*********************************
+		* COMMON PROPERTIES
+		*********************************
+	-->
 	<properties>
 		<!-- Runtime environment versions -->
 		<java.version>1.7</java.version>
@@ -42,6 +67,7 @@
 		<!-- Plugins -->
 		<failsafe.version>2.18.1</failsafe.version>
 		<sqlplugin.version>1.5</sqlplugin.version>
+		<release.plugin>2.5.2</release.plugin>
 
 	</properties>
 
@@ -208,6 +234,27 @@
 
 	</dependencyManagement>
 
+
+	<!-- ******************************************* -->
+	<!-- Distribuiton management (e.g: for Releases) -->
+	<!-- ******************************************* -->
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>central</id>
+			<name>easytrust-releases</name>
+			<url>http://5.135.48.105/artifactory/libs-release-local</url>
+		</repository>
+		<!--
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>snapshot</id>
+			<name>easytrust-snapshots</name>
+			<url>http://5.135.48.105/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+		-->
+	</distributionManagement>
+
 	<!-- ************************** -->
 	<!-- PROJECT PLUGINS management -->
 	<!-- ************************** -->
@@ -242,6 +289,20 @@
 		                </dependency>
 		            </dependencies>
 		        </plugin>
+
+				<!-- Maven Release Plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${release.plugin}</version>
+					<configuration>
+						<tagBase>https://github.com/Akamanouche/java-at-Anaolabs/releases</tagBase>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
+				        <useReleaseProfile>false</useReleaseProfile>
+				        <releaseProfiles>release</releaseProfiles>
+				        <autoVersionSubmodules>true</autoVersionSubmodules>
+					</configuration>
+				</plugin>
 				
 			</plugins>
 		</pluginManagement>
