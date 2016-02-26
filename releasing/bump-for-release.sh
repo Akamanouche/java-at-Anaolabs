@@ -12,11 +12,17 @@
 #	$ bash ./bump-for-release.sh <current version>
 # -----------------------------------------------------------------------------
 
+# Constants
+CURDIR=`dirname $0`
+USAGE="usage : bash ./bump-for-release.sh <current version>" 
+
+# source commons
+source "$CURDIR/commons.sh" 
+
 # Check parameters
 if [ $# -eq 0 ]
 then
-	echo "[ERROR] Missing targeted \"version\" !..."
-    echo "    ==> usage: bash /path/to/bump-for-release.sh <version>"
+	logError "Missing targeted \"version\" !" "$USAGE"
     exit 1
 fi 
 export RELEASE_VERSION=$1
@@ -25,9 +31,9 @@ echo "DOING checks for new release : $RELEASE_VERSION"
 
 # 1) Extract CURRENT VERSION in main POM
 export CURRENT_VERSION=`mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | sed -n -e '/^\[.*\]/ !{ /^[0-9]/ { p; q } }'`
-if [ $CURRENT_VERSION == "1" ]
+if [ "$CURRENT_VERSION" == "1" ]
 then
-	echo "Current directory is not a maven project"
+	logError "Current directory is not a maven project !"
 	exit 1
 fi
 
@@ -36,7 +42,7 @@ echo -e "\t- Current version is : $CURRENT_VERSION"
 # [RULE 1] version MUST ends with "-SNAPSHOT" as we release ONLY FROM "develop" branch
 if [[ ! "$CURRENT_VERSION" == *SNAPSHOT ]]
 then
-	echo "Current version SHOULD BE a 'SNAPSHOT' version !"
+	logError "Current version SHOULD BE a 'SNAPSHOT' version !"
 	exit 1
 fi
 
@@ -50,6 +56,6 @@ CURDIR=`dirname $0`
 bash $CURDIR/bump-it.sh -f $CURRENT_VERSION -t $RELEASE_VERSION
 
 # Call POST Bumping specific process
-bash $CURDIR/post-bump-specs.sh -f $CURRENT_VERSION -t $RELEASE_VERSION
+bash $CURDIR/post-bump-specifics.sh -f $CURRENT_VERSION -t $RELEASE_VERSION
 
 

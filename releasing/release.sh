@@ -13,12 +13,14 @@
 #
 # ## STEPS are :
 #	1) [GIT] Check branch issuing release
-#	2) [GIT] Creating a specific branch for release
-#	3) [MAVEN] Bumping versions
-#	4) [MAVEN] Launch a DEV build
-#	5) [MAVEN] Launch a PROD build
-# 	6) ...
-#	7) ...
+#	2) [MAVEN] Bumping versions
+#	3) [GIT] Creating a specific branch for release
+#	4) [MAVEN/SPEC] Call Release build specifics
+# 	5) [GIT] Add and commit bumping version
+#	6) [GIT] Push branch of release
+#	7) [GITHUB/API] Do a Pull Request from (branch --> master)
+#	8) [GITHUB/API] Force Merge Pull Request
+#	9) [GITHUB/API] Draft a new release / tag
 #
 # ## Source d'inspiration
 #	- mydoc: ../Link to DELIVERY-DWH-in-PRODUCTION-version2@EASYTRUST.txt
@@ -27,19 +29,11 @@
 
 # Constants
 RELEASE_PREFIX="release-"
-
+CURDIR=`dirname $0`
 USAGE="usage : bash ./release.sh -r <release version> [-j <JIRA ref>]" 
 
-logStep() {
-	echo "==========================================================="
-	echo "[RELEASING] STEP: $1"
-	echo "==========================================================="
-}
-
-logError() {
-	echo "[ERROR] $1"
-	echo "    ==> $2"
-}
+# source commons
+source "$CURDIR/commons.sh" 
 
 
 # Check parameters
@@ -73,51 +67,68 @@ echo -e "\t- RELEASE : $RELEASE_VERSION"
 echo -e "\t- JIRA_REF : $JIRA_REF"
 
 
-# RELEASE PROCESS starts here...
-# ------------------------------
 
-# 1) [GIT] Check branch issuing release
-logStep "1) Checking branch for releasing process..."
+#### STEP 1 : [GIT] Check branch issuing release
+logStep "1) Checking from-branch for releasing process..."
 
 # [RULE 1] From Branch for releasing MUST BE "develop"
 export CURRENT_BRANCH=`git name-rev --name-only HEAD`
 if [ ! $CURRENT_BRANCH == "develop" ]
 then
-	logError "Current branch MUST BE 'develop' (is currently: '$CURRENT_BRANCH') !" "Please: switch to 'develop'"
+	logError "Current from-branch MUST BE 'develop' (is currently: '$CURRENT_BRANCH') !" "Please: switch to 'develop'"
 	exit 1
 fi
 
-CURDIR=`dirname $0`
 
-# 2) [GIT] Creating a specific branch for release
+#### STEP 2 : [MAVEN] Bumping versions
+logStep "2) Bumping versions"
+bash "$CURDIR/bump-for-release.sh" $RELEASE_VERSION
+if [ ! $? -eq 0 ]
+then
+	logError "Bumping version has failed !" "Fix it"
+	exit 1
+fi
+
+
+#### STEP 3 : [GIT] Creating a specific branch for release
 BRANCH_FOR_RELEASE=$RELEASE_PREFIX$RELEASE_VERSION
-logStep "2) Creating BRANCH for RELEASE: \"$BRANCH_FOR_RELEASE\""
+logStep "3) Creating dedicated branch for RELEASE: \"$BRANCH_FOR_RELEASE\""
 git checkout -b $BRANCH_FOR_RELEASE
+if [ ! $? -eq 0 ]
+then
+	logError "Creating dedicated branch for release has failed !" "Fix it"
+	exit 1
+fi
 sleep 2
 
-# 3) [MAVEN] Bumping versions
-logStep "3) Bumping versions"
-bash "$CURDIR/bump-for-release.sh" $RELEASE_VERSION
 
-# 5) [MAVEN] Launch a DEV build
-logStep "4) BUILDING in DEV Mode (with Tests)"
-mvn clean install -P DEV
-
+#### STEP 4 : [MAVEN/SPEC] Call Release build specifics
+logStep "4) Call Release build specifics"
+bash "$CURDIR/release-build-specifics.sh"
 if [ ! $? -eq 0 ]
 then
-	logError "Build in DEV mode (with test) has failed !" "Fix it"
+	logError "Bumping version has failed !" "Fix it"
 	exit 1
 fi
 
 
-# 5) [MAVEN] Launch a PROD build
-logStep "5) BUILDING PROD binaries"
-mvn clean install -P PROD
+#### STEP 5 : [GIT] Add and commit bumping version
+# !! TODO !!
 
-if [ ! $? -eq 0 ]
-then
-	logError "Build in PROD has failed !" "Fix it"
-	exit 1
-fi
+
+#### STEP 6 : [GIT] Push branch of release
+# !! TODO !!
+
+
+#### STEP 7 : [GITHUB/API] Do a Pull Request (release ==> master)
+# !! TODO !!
+
+
+#### STEP 8 : [GITHUB/API] Force Merge Pull Request
+# !! TODO !!
+
+
+#### STEP 9 :  [GITHUB/API] Draft a new release on MASTER / tag
+# !! TODO !!
 
 
