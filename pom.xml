@@ -232,6 +232,7 @@
 	<!-- ******************************************* -->
 	<!-- Distribuiton management (e.g: for Releases) -->
 	<!-- ******************************************* -->
+	<!--
 	<distributionManagement>
 		<repository>
 			<uniqueVersion>true</uniqueVersion>
@@ -239,15 +240,8 @@
 			<name>easytrust-releases</name>
 			<url>http://5.135.48.105/artifactory/libs-release-local</url>
 		</repository>
-		<!--
-		<snapshotRepository>
-			<uniqueVersion>true</uniqueVersion>
-			<id>snapshot</id>
-			<name>easytrust-snapshots</name>
-			<url>http://5.135.48.105/artifactory/libs-snapshot-local</url>
-		</snapshotRepository>
-		-->
 	</distributionManagement>
+	-->
 
 	<!-- ************************** -->
 	<!-- PROJECT PLUGINS management -->
